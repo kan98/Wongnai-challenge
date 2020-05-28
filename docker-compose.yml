@@ -14,5 +14,25 @@ services:
       - '3306'
     volumes:
       - "./data/mysql:/var/lib/mysql"
+    networks:
+      - database
+
+  app-server:
+    build:
+      context: Backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on: 
+      - db
+    networks:
+      - database
+      - frontend
+
 volumes:
   my-db:
+
+networks:
+  database:
+  frontend:
