@@ -14,8 +14,7 @@ services:
       - '3306'
     volumes:
       - "./data/mysql:/var/lib/mysql"
-    networks:
-      - database
+    network_mode: host
 
   app-server:
     build:
@@ -26,9 +25,7 @@ services:
     restart: always
     depends_on: 
       - db
-    networks:
-      - database
-      - frontend
+    network_mode: host
 
   client:
       image: nginx
@@ -38,8 +35,7 @@ services:
         - ./client:/usr/share/nginx/html
       depends_on: 
         - app-server
-      networks:
-        - frontend
+      network_mode: host
 
 volumes:
   my-db:
