@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <title>Wongnai Challenge</title>
+</head>
+<html>
+    <h1>Wongnai Challenge Application by Kan</h1>
+
+    <br /> 
+    <h2>Get Review by ID</h2>
+    <form name="get-review" action="/get-review.html" onsubmit="return validateForm1()" method="GET">
+        <label for="id">Review ID:</label><br>
+        <input type="number" id="id" name="id"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <br />
+
+    <h2>Get Reviews by Dictionary</h2>
+    <form name="get-reviews-keyword" action="/get-reviews-keyword.html" onsubmit="return validateForm2()" method="GET">
+        <label for="keyword">Food Dictionary Keyword:</label><br>
+        <input type="text" id="keyword" name="keyword"><br>
+        <small>Please make sure you enter a keyword from the <a href="/data/food_dictionary.txt">Food Dictionary</a>.</small>
+        <br />
+        <input type="submit" value="Submit">
+    </form>
+
+    <br />
+
+    <h2>Modify Existing Review</h2>
+    <form name="edit-review" id="edit-review" action="#">
+        <label for="id2">Id:</label><br>
+        <input type="text" id="id2" name="id"><br>
+        <label for="review">Review:</label><br>
+        <input type="textarea" id="review" name="review"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p id="update-status"></p>
+
+    <script src="index.js"></script>
+  </html>

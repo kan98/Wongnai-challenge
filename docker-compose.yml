@@ -1,0 +1,45 @@
+version: '3.4'
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'database'
+      MYSQL_USER: 'kan'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - "./data/mysql:/var/lib/mysql"
+    network_mode: host
+
+  app-server:
+    build:
+      context: Backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on: 
+      - db
+    network_mode: host
+
+  client:
+      image: nginx
+      ports:
+          - 5555:80
+      volumes:
+        - ./client:/usr/share/nginx/html
+      depends_on: 
+        - app-server
+      network_mode: host
+
+volumes:
+  my-db:
+
+networks:
+  database:
+  frontend:
