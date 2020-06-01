@@ -30,6 +30,17 @@ services:
       - database
       - frontend
 
+  client:
+      image: nginx
+      ports:
+          - 5555:80
+      volumes:
+        - ./client:/usr/share/nginx/html
+      depends_on: 
+        - app-server
+      networks:
+        - frontend
+
 volumes:
   my-db:
 
